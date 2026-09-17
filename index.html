@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-    background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
-    /* Alternative exact vibrant NGL gradient: */
-    /* background: linear-gradient(135deg, #ec008c 0%, #fc6767 100%); */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>YOUR_CUSTOM_TITLE</title>
+<style>
+  :root {
+    --pink: #e60067;
+    --orange: #ff5e36;
+    --gold: #ffa600;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; }
+  body {
     min-height: 100vh;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-width: 100%; padding: 14px; background: #000; color: #fff; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
-  </style>
-</head>
-<body>
-  <div class="card">
-    <h3>send me anonymous messages!</h3>
-    <form action=https://formspree.io/f/myezyakq method="POST">
-      <input type="text" name="handle" placeholder="Your Instagram id" required>
-      <textarea name="message" placeholder="Type message..." required></textarea>
-      <button type="submit">Send!</button>
-    </form>
-  </div>
-</body>
-</html>
+    background: linear-gradient(135deg, var(--pink) 0%, var(--orange) 50%, var(--gold) 100%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+  }
+  .app { width: 100%; max-width: 400px; }
+  .brand {
+    text-align: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 22px;
