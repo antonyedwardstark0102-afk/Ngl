@@ -2,38 +2,328 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-<title>@sybau_dharun !!!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@sybau_dharun !!! — send me messages!</title>
 <style>
-  :root {
-    --pink: #e60067;
-    --orange: #ff5e36;
-    --gold: #ffa600;
-    --ink: #0f0f10;
-    --muted: #8a8a92;
-    --field-bg: #f2f2f5;
-    --card-radius: 26px;
-    --pill-radius: 999px;
-  }
-
-  * { box-sizing: border-box; }
-
-  html, body {
+  * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    height: 100%;
   }
 
   body {
     min-height: 100vh;
-    min-height: 100dvh;
-    color: var(--ink);
+    background: linear-gradient(135deg, #e60067 0%, #ff5e36 50%, #ffa600 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
   }
 
-  .app {
+  .page {
     width: 100%;
     max-width: 380px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .brand {
+    color: #fff;
+    font-size: 26px;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: -0.3px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    margin-bottom: 18px;
+  }
+
+  .card {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 26px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+    padding: 22px;
+  }
+
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #17171a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .avatar svg {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+  }
+
+  .handle {
+    font-size: 13px;
+    color: #9a9aa3;
+    font-weight: 600;
+  }
+
+  .prompt {
+    font-size: 17px;
+    font-weight: 800;
+    color: #111114;
+    margin-top: 1px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .field {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-family: inherit;
+    color: #111114;
+    background: rgba(237, 237, 245, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .field::placeholder {
+    color: #97979f;
+  }
+
+  .field:focus {
+    outline: none;
+    background: rgba(237, 237, 245, 0.85);
+  }
+
+  .textarea-wrap {
+    position: relative;
+    width: 100%;
+  }
+
+  textarea.field {
+    min-height: 108px;
+    resize: none;
+    padding-right: 46px;
+  }
+
+  .dice-btn {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .dice-btn:active {
+    transform: scale(0.92);
+  }
+
+  .send-btn {
+    margin-top: 4px;
+    width: 100%;
+    background: #111114;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+    border-radius: 999px;
+    padding: 15px;
+    cursor: pointer;
+  }
+
+  .send-btn:active {
+    transform: scale(0.98);
+  }
+
+  .send-btn:disabled {
+    opacity: 0.7;
+    cursor: default;
+  }
+
+  .form-error {
+    display: none;
+    color: #d1274a;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .form-error.visible {
+    display: block;
+  }
+
+  .sent-msg {
+    text-align: center;
+    font-weight: 700;
+    color: #111114;
+    padding: 24px 0;
+    font-size: 16px;
+  }
+
+  .lower {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .qna-tag {
+    background: rgba(255, 255, 255, 0.28);
+    color: #fff;
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .social-proof {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 18px;
+    margin-top: 2px;
+  }
+
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    text-decoration: none;
+  }
+
+  .footer-links a:focus-visible,
+  .dice-btn:focus-visible,
+  .send-btn:focus-visible,
+  .field:focus-visible {
+    outline: 2px solid #111114;
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="brand">@sybau_dharun !!!</div>
+
+    <div class="card">
+      <div class="profile-header">
+        <div class="avatar">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7v1H4v-1z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="handle">@yourhandle</div>
+          <div class="prompt">send me messages!</div>
+        </div>
+      </div>
+
+      <form id="qnaForm" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+        <input class="field" type="text" name="instagram_handle" placeholder="Your Instagram Handle" aria-label="Your Instagram Handle" required>
+
+        <div class="textarea-wrap">
+          <textarea class="field" name="message" id="messageBox" placeholder="send me messages..." aria-label="Your message" required></textarea>
+          <button type="button" class="dice-btn" id="diceBtn" title="Random prompt" aria-label="Random prompt">🎲</button>
+        </div>
+
+        <button type="submit" class="send-btn" id="sendBtn">Send!</button>
+        <div class="form-error" id="formError">Couldn't send — try again.</div>
+      </form>
+    </div>
+
+    <div class="lower">
+      <div class="qna-tag">🔒 q&amp;a</div>
+      <div class="social-proof">⚡ 249 people just tapped the button ⚡</div>
+      <div class="footer-links">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var prompts = [
+      "What's a random fact about you?",
+      "What do you honestly think of me?",
+      "Rate me 1 to 10 😅",
+      "What's something you've always wanted to tell me?",
+      "Describe me in 3 words",
+      "Got a compliment for me?",
+      "Ask me anything, I dare you",
+      "What's your first impression of me?"
+    ];
+
+    document.getElementById('diceBtn').addEventListener('click', function () {
+      var box = document.getElementById('messageBox');
+      box.value = prompts[Math.floor(Math.random() * prompts.length)];
+      box.focus();
+    });
+
+    var form = document.getElementById('qnaForm');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var sendBtn = document.getElementById('sendBtn');
+      var errorEl = document.getElementById('formError');
+      var original = sendBtn.textContent;
+
+      errorEl.classList.remove('visible');
+      sendBtn.textContent = 'Sending...';
+      sendBtn.disabled = true;
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (res) {
+        if (res.ok) {
+          form.innerHTML = '<div class="sent-msg">Message sent! 🎉</div>';
+        } else {
+          sendBtn.textContent = original;
+          sendBtn.disabled = false;
+          errorEl.classList.add('visible');
+        }
+      }).catch(function () {
+        sendBtn.textContent = original;
+        sendBtn.disabled = false;
+        errorEl.classList.add('visible');
+      });
+    });
+  </script>
+</body>
+</html>
     flex-direction: column;
     align-items: center;
   }
